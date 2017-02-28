@@ -1,3 +1,4 @@
+#burn btc for xrp
 import json
 import requests
 from requests.auth import HTTPBasicAuth
@@ -8,12 +9,10 @@ auth = HTTPBasicAuth('counterparty-rpc', 'sweng')
 
 # Send 1 XCP (specified in satoshis) from one address to another.
 payload = {
-           "method": "create_send",
+           "method": "create_burn",
            "params": {
                       "source": "my4fJWPYaWRsNuKXqj9bsNsDYWzsRR6PMp",
-                      "destination": "miCf5Wbi9vkJfa5HC2gkzuPwRHdvu5X9iy",
-                      "asset": "SWENGTEST",
-                      "quantity": 100000000
+                      "quantity": 10000000
                      },
            "jsonrpc": "2.0",
            "id": 0
