@@ -1,0 +1,7 @@
+virtual env
+
+add following to /home/sweng/.bashrc
+
+export WORKON_HOME=~/.virtualenvs
+VIRTUALENVWRAPPER_PYTHON='/usr/bin/python3'
+source /usr/local/bin/virtualenvwrapper.sh

@@ -14,6 +14,7 @@ Process Flow:
 
 4. Voters Send Counterparty voting token to candidates ballot address
 
+5. Display Ballot Totals
 
 
 
