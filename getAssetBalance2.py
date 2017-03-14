@@ -7,20 +7,19 @@ headers = {'content-type': 'application/json'}
 auth = HTTPBasicAuth('rpc', 'sweng')
 
 
-# Issuance (indivisible)
+
+
+# Fetch all balances for all assets for both of two addresses, using keyword-based arguments
 payload = {
-           "method": "create_issuance",
+           "method": "get_balances",
            "params": {
-                      "source": "mh4w5JnU662ddHywJU3X1wYL6mufjd6Egz",
-                      "asset": "SWENGBALLOT",
-                      "quantity": 10000000,
-                      "description": "This is a test asset for the demo",
-                      "divisible": False
+                      "filters": [{"field": "address", "op": "==", "value": "myPy5dWTs43jb4gvirBZdTNeL1QHcwS91f"},
+                                  {"field": "address", "op": "==", "value": "mtwNwy1jU3mjW2dBJHmRFH6z2CsKLjQ2dy"}],
+                      "filterop": "or"
                      },
            "jsonrpc": "2.0",
            "id": 0
           }
-
 
 response = requests.post(url, data=json.dumps(payload), headers=headers, auth=auth)
 print("Response: ", response.text)

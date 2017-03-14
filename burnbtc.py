@@ -5,14 +5,14 @@ from requests.auth import HTTPBasicAuth
 
 url = "http://localhost:14000/api/"
 headers = {'content-type': 'application/json'}
-auth = HTTPBasicAuth('counterparty-rpc', 'sweng')
+auth = HTTPBasicAuth('rpc', 'sweng')
 
 # Send 1 XCP (specified in satoshis) from one address to another.
 payload = {
            "method": "create_burn",
            "params": {
-                      "source": "my4fJWPYaWRsNuKXqj9bsNsDYWzsRR6PMp",
-                      "quantity": 10000000
+                      "source": "mh4w5JnU662ddHywJU3X1wYL6mufjd6Egz",
+                      "quantity": 1000000
                      },
            "jsonrpc": "2.0",
            "id": 0

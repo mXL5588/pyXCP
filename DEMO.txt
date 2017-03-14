@@ -1,0 +1,44 @@
+$ DEMO Commands
+
+Process Flow:
+1. Create Voting Token 
+1.1 Burn Bitcoin to recieve Counterparty Token
+1.2 Use Counterparty Token to create Asset/Voting Token
+
+2. Distribute Voting Token to Voters
+2.1 Send Voting Token to Voters
+2.2 Confirm/Validate Voters Recieve Tokens
+
+3. Assign Addresses to Ballot Candidates
+3.1 Generate bitcoin wallet address to represent each candidate
+
+4. Voters Send Counterparty voting token to candidates ballot address
+
+
+
+
+# Get Counterparty Server Info
+python getinfo.py
+
+# Get Bitcoind Client info
+bitcoin-cli getinfo
+
+# Get Bitcoin wallet balance from bitcoin client
+bitcoin-cli getbalance
+
+
+# Get Bitcoin wallet balance from Counterparty server
+sudo counterparty-client balances mh4w5JnU662ddHywJU3X1wYL6mufjd6Egz
+
+# Burn bitcoin to get XCP tokens
+python burnbtc.py
+
+# Issue counterparty asset from XCP tokens to bitcoin address
+python issuance.py
+
+# Retrieve the asset balance of an address
+python getAssetBalance.py
+
+# Distribute Counterparty asset to voter address
+python sendasset.py
+

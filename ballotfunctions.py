@@ -9,7 +9,7 @@ auth = HTTPBasicAuth('counterparty-rpc', 'sweng')
 
 
 
-def createBallot(sourceAddress.string, assetName.string, ballotQuantity.int, ballotDesc.string, isDivisible.bool)
+def createBallot(ballotSourceAddress.string, assetName.string, ballotQuantity.int, ballotDesc.string, isDivisible.bool)
     # Issuance (indivisible)
     payload = {
                "method": "create_issuance",
@@ -66,4 +66,24 @@ def getBallotCandidateBalance(candidateAddress.string)
 
 
 def getBallotCandidateAddress(ballotID.int)
+#Retrieve ballot candidateAddress from database
+
+def getBallotSourceAddress(ballotID.int)
+#Retrieve ballot creation address from databases
+
+def lockBallot(ballotSourceAddress.int, assetName.string)
+ #Lock Asset so no more assets can be issued
+  payload = {
+           "method": "create_issuance",
+           "params": {
+                      "source": ballotSourceAddress,
+                      "asset": assetName,
+                      "quantity": 0,
+                      "description": "LOCK"
+                     },
+           "jsonrpc": "2.0",
+           "id": 0
+          }
+  response = requests.post(url, data=json.dumps(payload), headers=headers, auth=auth)
+  print("Response: ", response.text)
 

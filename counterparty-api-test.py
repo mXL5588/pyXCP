@@ -72,7 +72,7 @@ payload = {
 # Issuance (indivisible)
 payload = {
            "method": "create_issuance",
-           "params": {
+         5frfcc65  "params": {
                       "source": "1CUdFmgK9trTNZHALfqGvd8d6nUZqH2AAf",
                       "asset": "MYASSET",
                       "quantity": 1000,
