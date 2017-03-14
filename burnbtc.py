@@ -12,7 +12,7 @@ payload = {
            "method": "create_burn",
            "params": {
                       "source": "mh4w5JnU662ddHywJU3X1wYL6mufjd6Egz",
-                      "quantity": 1000000
+                      "quantity": 10000
                      },
            "jsonrpc": "2.0",
            "id": 0
