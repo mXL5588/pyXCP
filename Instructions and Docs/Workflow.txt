@@ -37,9 +37,16 @@ python burnbtc.py
 # Issue counterparty asset from XCP tokens to bitcoin address
 python issuance.py
 
+# signrawtransaction hash
+
+# sendrawtransaction hash
+
 # Retrieve the asset balance of an address
 python getAssetBalance.py
 
 # Distribute Counterparty asset to voter address
 python sendasset.py
 
+# signrawtransaction hash
+
+# sendrawtransaction hash

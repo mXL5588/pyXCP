@@ -12,8 +12,8 @@ payload = {
            "method": "create_issuance",
            "params": {
                       "source": "mh4w5JnU662ddHywJU3X1wYL6mufjd6Egz",
-                      "asset": "SWENGBALLOT",
-                      "quantity": 10000000,
+                      "asset": "TESTBALL",
+                      "quantity": 100,
                       "description": "This is a test asset for the demo",
                       "divisible": False
                      },
@@ -21,6 +21,6 @@ payload = {
            "id": 0
           }
 
-
 response = requests.post(url, data=json.dumps(payload), headers=headers, auth=auth)
 print("Response: ", response.text)
+
