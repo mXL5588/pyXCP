@@ -10,8 +10,12 @@ class cRPCHost(object):
         self._session = requests.Session()
         self._url = url
         self._headers = {'content-type': 'application/json'}
-    def call(self, rpcMethod, *params):
-        payload = json.dumps({"method": rpcMethod, "params": list(params), "jsonrpc": "2.0", "id": 0})
+    def call(self, rpcMethod, params):
+        print(self)
+        print(rpcMethod)
+        print(params)
+        payload = json.dumps({"method": rpcMethod, "params": params, "jsonrpc": "2.0", "id": 0})
+        print (payload)
         tries = 10
         hadConnectionFailures = False
         while True:
@@ -39,10 +43,18 @@ class cRPCHost(object):
 
 
 host = cRPCHost(serverURL)
-dataCall = host.call('get_running_info')
+objParams = {"source": "mh4w5JnU662ddHywJU3X1wYL6mufjd6Egz",
+                      "asset": "TESTBALL",
+                      "quantity": 100,
+                      "description": "This is a test asset for the demo",
+                      "divisible": False}
+
+unsignedTransaction = host.call('create_issuance', objParams)
+print(unsignedTransaction)
 #block = host.call('last_block', runningInfo)
 ## lookup details in the results
 #coinBase = block['tx'][0]
 ## more than one RPC parameter
 #l = host.call('listreceivedbyaddress', 0, True)
-print(dataCall.get('last_block').get('block_time'))
+#print(dataCall.text)
+
