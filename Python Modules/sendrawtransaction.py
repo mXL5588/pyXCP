@@ -18,4 +18,5 @@ payload = {
 	"jsonrpc": "2.0"
 	}
 response = requests.post(serverURL, headers=headers, data=json.dumps(payload))
-print(response.text)
+parsableResponse = json.loads(response.text)
+

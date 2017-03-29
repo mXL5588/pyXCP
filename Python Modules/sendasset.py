@@ -36,7 +36,7 @@ payload = {
            "params": {
                       'source': 'mh4w5JnU662ddHywJU3X1wYL6mufjd6Egz', 
 					   'destination': 'mpWWZa5M8xdaPKZMrSXRMn2wnq26DGzRBe',
-                      'asset': 'TESTBALL',
+                      'asset': 'SWENGMAIN',
                       'quantity': 1
                      },
            "jsonrpc": "2.0",
@@ -44,4 +44,10 @@ payload = {
           }
 
 response = requests.post(url, data=json.dumps(payload), headers=headers, auth=auth)
-print("Response: ", response['id'])
+#print("Response: ", response['id'])
+jsonObj = json.loads(response.text)
+#print (jsonObj['results'])
+if 'result' in jsonObj:
+	    print(jsonObj['result'])
+else:
+	    print ('This does not have a key')   
