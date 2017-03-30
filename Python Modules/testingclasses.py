@@ -85,29 +85,88 @@ class btcRPCHost(object):
 xcpHost = xcpRPCHost(xcpserverURL)
 btcHost = btcRPCHost(btcserverURL)
 
-objParams = {"source": "mh4w5JnU662ddHywJU3X1wYL6mufjd6Egz",
-                      "asset": "CLASSTEST",
-                      "quantity": 10,
-                      "description": "This is a test asset for the demo",
-                      "divisible": False}
 
-unsignedTransaction = xcpHost.call('create_issuance', objParams)
-print("Unsigned Transaction:", unsignedTransaction)
+#create a counterparty asset
+def createAsset(sourceAddress, assetName, assetQuantity, assetDescription, isDivisible):
+	#try:
+		objParams = {"source": sourceAddress,
+		                      "asset": assetName,
+		                      "quantity": assetQuantity,
+		                      "description": assetDescription,
+		                      "divisible": isDivisible}
 
-hash = btcHost.call('signrawtransaction', unsignedTransaction)
-
-strHex = hash.get('hex')
-print("Signed Transaction Hex", strHex)
-
-send = btcHost.call('sendrawtransaction', strHex)
-print ("Send Transaction Hash", send)
-
-rawhash = btcHost.call('getrawtransaction', send)
-
-print("Raw Transaction:", rawhash)
+		unsignedTransaction = xcpHost.call('create_issuance', objParams)
+		print("Unsigned Transaction:", unsignedTransaction)
+		return unsignedTransaction
+	#except:
+	#	print ("Failed. createAsset()")
 
 
+#sign a raw counterparty transaction output
+def signRawTransaction(unsignedTransaction):
+	#try:
+		hash = btcHost.call('signrawtransaction', unsigned )
+		strHex = hash.get('hex')
+		print ("Signed Raw Transaction Hex", strHex)
+		return strHex
+	#except:
+	#	print ("Failed. signRawTransaction()")
 
 
+#broadcast raw bitcoin transaction
+def sendRawTransaction(signedTransactionHex):
+	#try:
+		broadcast = btcHost.call('sendrawtransaction', signedTransactionHex)
+		print ("Sent Transaction Hash", broadcast)
+		return broadcast
+	#except:
+	#	print ("Failed. sendRawTransaction()")
 
 
+#get rawtransaction data
+def getRawTransaction(sentTransaction):
+	#try:
+		rawhash = btcHost.call('getrawtransaction', sentTransaction)
+		print("Raw Transaction:", rawhash)
+		return rawhash
+	#except:
+	#	print ("Failed. getRawTransaction()")
+
+
+# Send 1 XCP (specified in satoshis) from one address to another.
+def castVote(userSourceAddress, candidateAddress, assetName, voteQuantity):
+
+	objParams = {"source": userSourceAddress,
+	"destination": candidateAddress,
+	"asset": assetName,
+	"quantity": voteQuantity}
+	unsignedTransaction = xcpHost.call('create_send', objParams)
+	print("Unsigned Transaction:", unsignedTransaction)
+	return unsignedTransaction
+
+def broadcastSignedTransaction(unsignedTransaction):
+	signed = signRawTransaction(unsigned)
+
+	sent = sendRawTransaction(signed)
+
+	raw = getRawTransaction(sent)
+
+
+sourceAddr = "mh4w5JnU662ddHywJU3X1wYL6mufjd6Egz"
+assetName = "XLTEST"
+assetQuantity = 100000
+assetDescription = "This is a test."
+isDivisible = False
+
+#candidateAddress = "mfrK1qzYpL6KYqDgXbPdR4ZG1XemWe31av"
+candidateAddress = "mqKfr6S5SJgzWcd1kqjdKRzWvUwS8XoR8t"
+voteQuantity = 1
+
+
+#unsigned = createAsset(sourceAddr, assetName, assetQuantity, assetDescription, isDivisible)
+
+unsigned = castVote(sourceAddr, candidateAddress, assetName, voteQuantity)
+
+
+broadcastSignedTransaction(unsigned)
+print("Complete")
